@@ -1,0 +1,46 @@
+<?xml version='1.0' standalone='yes'?>
+
+<!DOCTYPE PLUGIN [
+<!ENTITY name      "pcie.wifi">
+<!ENTITY author    "sgroezinger">
+<!ENTITY version   "2022.06.11">
+<!ENTITY pluginURL "https://github.com/VenticX/unraidWlan/blob/main">
+]>
+
+<PLUGIN name="&name;" author="&author;" launch="" version="&version;" pluginURL="&pluginURL;/wifi.plg">
+
+<CHANGES>
+##&name;
+</CHANGES>
+
+<!--
+create plugin README.md file
+-->
+<FILE Name="/usr/local/emhttp/plugins/&name;/README.md">
+<URL>&pluginURL;/README.md</URL>
+</FILE>
+
+<!--
+The 'iwconfig' package file.
+-->
+<FILE Name="/boot/config/plugins/&name;/wireless-tools-29-x86_64-9.txz" Run="upgradepkg --install-new">
+<URL>https://slackware.uk/slackware/slackware64-14.2/slackware64/n/wireless-tools-29-x86_64-9.txz</URL>
+</FILE>
+
+<!--
+The 'remove' script.
+-->
+<FILE Run="/bin/bash">
+<INLINE>
+# Uninstall all installed packages
+removepkg wireless-tools
+
+# Remove plugin related files
+rm /usr/local/emhttp/plugins/&name;/README.md
+rm /boot/config/plugins/&name;/wireless-tools-29-x86_64-9.txz
+
+exit 0
+</INLINE>
+</FILE>
+
+</PLUGIN>

@@ -1,2 +1,2 @@
 # unraidWlan
-Unraid Plugin to enable wlan functionality
+This Unraid plug-in is used to enable wifi functionallity for asus pcie wifi card
